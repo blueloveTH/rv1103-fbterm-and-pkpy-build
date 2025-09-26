@@ -1,0 +1,57 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:718: checking whether make sets $(MAKE)
+configure:749: checking for gcc
+configure:862: checking whether the C compiler (arm-rockchip830-linux-uclibcgnueabihf-gcc -O  -L/home/miku/rv_build/staging/lib) works
+configure:878: arm-rockchip830-linux-uclibcgnueabihf-gcc -O -o conftest  -I/home/miku/rv_build/staging/include -L/home/miku/rv_build/staging/lib conftest.c  1>&5
+configure:904: checking whether the C compiler (arm-rockchip830-linux-uclibcgnueabihf-gcc -O  -L/home/miku/rv_build/staging/lib) is a cross-compiler
+configure:909: checking whether we are using GNU C
+configure:953: checking how to run the C preprocessor
+configure:1050: checking whether -traditional is needed for arm-rockchip830-linux-uclibcgnueabihf-gcc -O on this system
+configure:1128: checking for ranlib
+configure:1166: checking for a BSD compatible install
+configure:1219: checking how to copy files
+configure:1238: checking how to make hard links
+configure:1257: checking whether ln -s works
+configure:1284: checking host system type
+configure:1322: checking for AIX
+configure:1357: checking for minix/config.h
+configure:1405: checking for POSIXized ISC
+configure:1439: checking for object suffix
+configure:1463: checking for Cygwin environment
+configure:1495: checking for mingw32 environment
+configure:1525: checking for executable suffix
+configure:1628: checking build system type
+configure:1657: checking for ld used by GCC
+configure:1725: checking if the linker (arm-rockchip830-linux-uclibcgnueabihf-ld) is GNU ld
+configure:1741: checking for arm-rockchip830-linux-uclibcgnueabihf-ld option to reload object files
+configure:1752: checking for BSD-compatible nm
+configure:1790: checking how to recognise dependant libraries
+configure:1972: checking command to parse /usr/bin/nm -B output
+configure:2148: checking for dlfcn.h
+configure:2326: checking for arm-rockchip830-linux-uclibcgnueabihf-ranlib
+configure:2393: checking for arm-rockchip830-linux-uclibcgnueabihf-strip
+configure:2630: checking for objdir
+configure:2661: checking for arm-rockchip830-linux-uclibcgnueabihf-gcc option to produce PIC
+configure:2813: checking if arm-rockchip830-linux-uclibcgnueabihf-gcc PIC flag               -fPIC works
+configure:2883: checking if arm-rockchip830-linux-uclibcgnueabihf-gcc static flag -static works
+configure:2929: checking if arm-rockchip830-linux-uclibcgnueabihf-gcc supports -c -o file.o
+configure:2977: checking if arm-rockchip830-linux-uclibcgnueabihf-gcc supports -c -o file.lo
+configure:3050: checking if arm-rockchip830-linux-uclibcgnueabihf-gcc supports -fno-rtti -fno-exceptions
+configure:3063: arm-rockchip830-linux-uclibcgnueabihf-gcc -O -c  -fno-rtti -fno-exceptions -c conftest.c -I/home/miku/rv_build/staging/include conftest.c 1>&5
+cc1: warning: command line option '-fno-rtti' is valid for C++/ObjC++ but not for C
+cc1: warning: command line option '-fno-rtti' is valid for C++/ObjC++ but not for C
+configure:3094: checking whether the linker (arm-rockchip830-linux-uclibcgnueabihf-ld) supports shared libraries
+configure:3714: checking how to hardcode library paths into programs
+configure:3746: checking whether stripping libraries is possible
+configure:3764: checking dynamic linker characteristics
+configure:4154: checking if libtool supports shared libraries
+configure:5273: checking for locale.h
+configure:5316: checking for stdlib.h
+configure:5354: checking for mbstate_t
+configure:5391: checking for iconv
+configure:5518: checking for mbrtowc
+configure:5518: checking for wcrtomb
+configure:5518: checking for setlocale
+configure:5575: checking byte ordering

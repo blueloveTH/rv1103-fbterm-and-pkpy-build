@@ -1,0 +1,32 @@
+# ===================================================================
+# FINAL Meson Cross Compilation File for Luckfox Pico
+# ===================================================================
+
+[binaries]
+# We provide the absolute paths to all tools.
+c           = '/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc'
+cpp         = '/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-g++'
+ar          = '/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-ar'
+strip       = '/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-strip'
+pkg-config  = '/usr/bin/pkg-config'
+
+[properties]
+# We re-confirm the system root directory.
+sys_root    = '/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot'
+
+# === THIS IS THE CRITICAL NEW PART ===
+# We explicitly add the search paths and libraries for our manually compiled dependencies.
+# Meson will pass these flags to the compiler and linker for ALL operations.
+c_args      = ['-I/home/miku/luckfox_build/staging/usr/include', '-I/home/miku/luckfox_build/staging/include']
+c_link_args = ['-L/home/miku/luckfox_build/staging/usr/lib', '-L/home/miku/luckfox_build/staging/lib']
+
+# We do the same for C++
+cpp_args      = ['-I/home/miku/luckfox_build/staging/usr/include', '-I/home/miku/luckfox_build/staging/include']
+cpp_link_args = ['-L/home/miku/luckfox_build/staging/usr/lib', '-L/home/miku/luckfox_build/staging/lib']
+
+[host_machine]
+# This section remains the same.
+system = 'linux'
+cpu_family = 'arm'
+cpu = 'armv7a'
+endian = 'little'
