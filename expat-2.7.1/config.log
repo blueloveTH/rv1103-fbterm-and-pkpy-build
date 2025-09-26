@@ -27,7 +27,7 @@ uname -v = #236-Ubuntu SMP Fri Apr 11 19:53:21 UTC 2025
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
-PATH: /home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/
+PATH: /home/miku/rv_build/luckfox_toolchain/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/
 PATH: /home/miku/luckfox-pico/sysdrv/source/kernel/drivers/block/zram/bin/
 PATH: /home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/
 PATH: /home/miku/luckfox-pico/sysdrv/source/kernel/drivers/block/zram/bin/
@@ -725,7 +725,7 @@ conftest.c:34:7: warning: implicit declaration of function 'arc4random_buf'; did
        arc4random_buf(dummy, 0U);
        ^~~~~~~~~~~~~~
        srandom_r
-/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/ld.bfd: /tmp/ccP9J9r0.o: in function `main':
+/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/ld.bfd: /tmp/ccJhJhcf.o: in function `main':
 /home/miku/rv_build/expat-2.7.1/conftest.c:34: undefined reference to `arc4random_buf'
 collect2: error: ld returned 1 exit status
 configure:15190: $? = 1
@@ -775,7 +775,7 @@ conftest.c:33:11: warning: implicit declaration of function 'arc4random'; did yo
            arc4random();
            ^~~~~~~~~~
            srandom
-/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/ld.bfd: /tmp/cc7l2mnY.o: in function `main':
+/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/ld.bfd: /tmp/ccw71SYg.o: in function `main':
 /home/miku/rv_build/expat-2.7.1/conftest.c:33: undefined reference to `arc4random'
 collect2: error: ld returned 1 exit status
 configure:15217: $? = 1

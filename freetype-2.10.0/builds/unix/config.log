@@ -27,7 +27,7 @@ uname -v = #236-Ubuntu SMP Fri Apr 11 19:53:21 UTC 2025
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
-PATH: /home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin
+PATH: /home/miku/rv_build/luckfox_toolchain/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin
 PATH: /home/miku/luckfox-pico/sysdrv/source/kernel/drivers/block/zram/bin
 PATH: /home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin
 PATH: /home/miku/luckfox-pico/sysdrv/source/kernel/drivers/block/zram/bin
