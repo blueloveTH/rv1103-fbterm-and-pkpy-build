@@ -4,13 +4,14 @@ name: Build and Package Project for Luckfox Pico
 # 触发条件：当向 master 分支推送代码时，或手动触发时
 on:
   push:
-    branches: [ master ] # 已从 main 修改为 master
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
   build:
-    # 运行环境：使用最新的 Ubuntu 系统
-    runs-on: ubuntu-latest
+    # --- 修改：将运行环境固定为 Ubuntu 20.04 ---
+    # 这将确保云端编译环境与你的本地开发环境保持一致
+    runs-on: ubuntu-20.04
 
     steps:
       # 第 1 步：检出你的仓库代码
@@ -20,20 +21,21 @@ jobs:
           submodules: 'recursive'
 
       # 第 2 步：运行一键编译脚本
+      # 脚本内部已经处理了所有事情：安装主机依赖、下载工具链、编译所有库和程序
       - name: Run the One-Click Build Script
-        # 已修改为您的脚本名称
         run: |
           chmod +x auto_build_rv1103.sh
           ./auto_build_rv1103.sh
 
       # 第 3 步：运行打包脚本
+      # 这个脚本会把编译好的成品整理到 install 目录
       - name: Run the Packaging Script
-        # 已修改为您的脚本名称
         run: |
           chmod +x gen_installer.sh
           ./gen_installer.sh
 
       # 第 4 步：打包最终的部署文件
+      # 将 install 目录下的所有文件 (update.tar, install.sh) 打包成一个 zip，方便下载
       - name: Package Artifacts for Deployment
         uses: actions/upload-artifact@v4
         with:
