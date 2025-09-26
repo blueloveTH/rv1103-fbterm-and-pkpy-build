@@ -1,0 +1,14 @@
+prefix=/home/miku/rv_build/staging
+exec_prefix=/home/miku/rv_build/staging
+libdir=/home/miku/rv_build/staging/lib
+includedir=/home/miku/rv_build/staging/include
+
+Name: FreeType 2
+URL: https://freetype.org
+Description: A free, high-quality, and portable font engine.
+Version: 26.4.20
+Requires: zlib
+Requires.private: 
+Libs: -L/home/miku/rv_build/staging/lib -lfreetype 
+Libs.private: 
+Cflags: -I${includedir}/freetype2
