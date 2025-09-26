@@ -1,0 +1,10 @@
+VAR entity = 0
+VAR world = 0
+VAR dx = 0
+VAR dy = 0
+VAR m = 5
+VAR MinPosition = -99
+VAR MaxPosition = 99
+VAR EntityLenth =0
+~ world = zeros(121)
+~ entity = zeros(300000)

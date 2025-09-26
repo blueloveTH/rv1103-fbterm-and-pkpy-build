@@ -1,0 +1,14 @@
+{
+    "stubPath": "typings",
+    "extraPaths": ["pocketpy/include/typings"],
+    "reportMissingModuleSource": "none",
+    "reportOptionalMemberAccess": "error",
+    "reportOptionalOperand": "error",
+    "reportArgumentType": "warning",
+    "pythonVersion": "3.12",
+    "exclude": [
+        "backup",
+        "scripts",
+        "pocketpy"
+    ]
+}

@@ -1,0 +1,15 @@
+name: main
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pyright:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'recursive'
+    - uses: jakebailey/pyright-action@v2
+    # - uses: astral-sh/ruff-action@v3
