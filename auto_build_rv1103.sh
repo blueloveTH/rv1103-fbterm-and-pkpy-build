@@ -1,13 +1,12 @@
 #!/bin/bash
 
 # =================================================================
-# Fbterm & PocketPy 全自动交叉编译及导出脚本 (v21 - Final)
+# Fbterm & PocketPy 全自动交叉编译脚本 (v22 - 修正 FreeType 编译)
 # =================================================================
 
 set -eu
 
-# ... (第一到第四部分，即环境准备和变量设置，保持不变) ...
-
+# ... (第一到第四部分保持不变) ...
 # =================================================================
 # 第一部分：安装编译主机所需的所有依赖包
 # =================================================================
@@ -19,7 +18,7 @@ sudo apt-get install -y \
     device-tree-compiler libncurses5-dev pkg-config bc python-is-python3 \
     openssl openssh-server openssh-client vim file cpio rsync \
     build-essential automake libtool uuid-dev wget xz-utils
-echo "====== 主机依赖包安装完毕. ======"
+echo "====== 主机基础依赖包安装完毕. ======"
 echo ""
 
 
@@ -99,6 +98,7 @@ export PKG_CONFIG_PATH="${INSTALL_DIR}/lib/pkgconfig"
 export CPPFLAGS="-I${INSTALL_DIR}/include"
 export CXXFLAGS="-g -O2"
 export LDFLAGS="-L${INSTALL_DIR}/lib"
+export LIBS=""
 
 
 # =================================================================
@@ -128,7 +128,6 @@ echo ""
 # =================================================================
 # 第五部分：按顺序编译所有依赖和主程序
 # =================================================================
-# ... (所有编译步骤保持不变) ...
 rm -rf "${INSTALL_DIR}"
 mkdir -p "${INSTALL_DIR}"
 
@@ -137,7 +136,7 @@ echo "交叉编译环境设置完毕:"
 echo "  - 安装目录: ${INSTALL_DIR}"
 echo "  - C 编译器: $(which ${CC})"
 echo "================================================================="
-# ... zlib, expat, libiconv, freetype, fontconfig ...
+
 # --- 编译 zlib ---
 echo ""
 echo "======== 5.1 正在编译 zlib-1.3.1 ========"
@@ -176,7 +175,8 @@ echo ""
 echo "======== 5.4 正在编译 freetype-2.10.0 ========"
 cd "${BUILD_DIR}/freetype-2.10.0"
 make clean &> /dev/null || true
-./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}" --with-zlib=yes --enable-static --disable-shared
+# --- 修改：添加 --without-harfbuzz 来提高在现代编译环境下的兼容性 ---
+./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}" --with-zlib=yes --enable-static --disable-shared --without-harfbuzz
 make -j$(nproc)
 make install
 cd "${BUILD_DIR}"
@@ -231,47 +231,11 @@ echo "======== PocketPy 编译完成. ========"
     echo "======== fbterm 编译完成. ========"
 )
 
+
 echo ""
 echo "================================================================="
 echo "所有项目编译成功!"
-# ... (最终的成功信息) ...
-
-# =================================================================
-# 第六部分：将编译产物导出到 output 文件夹
-# =================================================================
-echo ""
-echo "====== 6.1 正在创建导出目录结构... ======"
-EXPORT_DIR="${BUILD_DIR}/output"
-mkdir -p "${EXPORT_DIR}/usr/bin"
-echo "导出目录 '${EXPORT_DIR}' 已准备好。"
-
-echo ""
-echo "====== 6.2 正在导出可执行文件... ======"
-
-# 导出 fbterm
-echo "  -> 正在复制 fbterm..."
-cp -f "${BUILD_DIR}/fbterm-1.7/src/fbterm" "${EXPORT_DIR}/usr/bin/"
-
-# 导出 pocketpy (将 build/main 复制并重命名为 pocketpy)
-echo "  -> 正在复制并重命名 pocketpy..."
-cp -f "${BUILD_DIR}/pocketpy/build/main" "${EXPORT_DIR}/usr/bin/pocketpy"
-
-# 导出 fontconfig 工具 (fc-cache, fc-list 等)
-# 这些工具在 fontconfig 编译后，被安装到了 staging/bin 目录
-echo "  -> 正在复制 fontconfig 工具..."
-cp -f "${BUILD_DIR}/staging/bin/"* "${EXPORT_DIR}/usr/bin/"
-
-echo "====== 可执行文件导出完成. ======"
-
-
-# =================================================================
-# 最终的成功信息
-# =================================================================
-echo ""
-echo "================================================================="
-echo "脚本执行完毕!"
 echo "所有依赖库已安装到: ${INSTALL_DIR}"
-echo "最终交付产物已导出到: ${EXPORT_DIR}"
-echo "  - PocketPy: ${EXPORT_DIR}/usr/bin/pocketpy"
-echo "  - fbterm:   ${EXPORT_DIR}/usr/bin/fbterm"
+echo "PocketPy 可执行文件为: ${BUILD_DIR}/pocketpy/build/main"
+echo "fbterm 可执行文件为: ${BUILD_DIR}/fbterm-1.7/src/fbterm"
 echo "================================================================="
