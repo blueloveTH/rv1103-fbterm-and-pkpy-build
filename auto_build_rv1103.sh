@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # =================================================================
-# Fbterm & PocketPy 全自动交叉编译脚本 (v22 - 修正 FreeType 编译)
+# Fbterm & PocketPy 全自动交叉编译脚本 (v23 - 强制清理构建目录)
 # =================================================================
 
 set -eu
@@ -98,7 +98,6 @@ export PKG_CONFIG_PATH="${INSTALL_DIR}/lib/pkgconfig"
 export CPPFLAGS="-I${INSTALL_DIR}/include"
 export CXXFLAGS="-g -O2"
 export LDFLAGS="-L${INSTALL_DIR}/lib"
-export LIBS=""
 
 
 # =================================================================
@@ -141,7 +140,8 @@ echo "================================================================="
 echo ""
 echo "======== 5.1 正在编译 zlib-1.3.1 ========"
 cd "${BUILD_DIR}/zlib-1.3.1"
-make clean &> /dev/null || true
+# 使用 git clean 确保绝对干净的源码树
+git clean -fdx
 ./configure --prefix="${INSTALL_DIR}" --static
 make -j$(nproc)
 make install
@@ -152,7 +152,7 @@ echo "======== zlib 编译完成. ========"
 echo ""
 echo "======== 5.2 正在编译 expat-2.7.1 ========"
 cd "${BUILD_DIR}/expat-2.7.1"
-make clean &> /dev/null || true
+git clean -fdx
 ./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}" --enable-static --disable-shared --without-docbook
 make -j$(nproc)
 make install
@@ -163,7 +163,7 @@ echo "======== expat 编译完成. ========"
 echo ""
 echo "======== 5.3 正在编译 libiconv-1.7 ========"
 cd "${BUILD_DIR}/libiconv-1.7"
-make clean &> /dev/null || true
+git clean -fdx
 ./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}" --enable-static --disable-shared
 make -j$(nproc)
 make install
@@ -174,9 +174,13 @@ echo "======== libiconv 编译完成. ========"
 echo ""
 echo "======== 5.4 正在编译 freetype-2.10.0 ========"
 cd "${BUILD_DIR}/freetype-2.10.0"
-make clean &> /dev/null || true
-# --- 修改：添加 --without-harfbuzz 来提高在现代编译环境下的兼容性 ---
-./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}" --with-zlib=yes --enable-static --disable-shared --without-harfbuzz
+
+# --- 最终修正：使用 git clean -fdx 强制清理工作区 ---
+# 这会删除所有未被 Git 追踪的文件和目录，包括之前编译失败留下的 Makefile 和 config.status
+git clean -fdx
+
+# 现在从一个绝对干净的状态开始配置和编译
+./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}" --with-zlib=yes --enable-static --disable-shared
 make -j$(nproc)
 make install
 cd "${BUILD_DIR}"
@@ -186,7 +190,7 @@ echo "======== freetype 编译完成. ========"
 echo ""
 echo "======== 5.5 正在编译 fontconfig-2.16.0 ========"
 cd "${BUILD_DIR}/fontconfig-2.16.0"
-make clean &> /dev/null || true
+git clean -fdx
 ./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}" --enable-static --disable-shared --disable-docs \
             --sysconfdir=${INSTALL_DIR}/etc --localstatedir=${INSTALL_DIR}/var
 make -j$(nproc)
@@ -198,6 +202,7 @@ echo "======== fontconfig 编译完成. ========"
 echo ""
 echo "======== 5.6 正在编译 PocketPy (使用手动 CMake) ========"
 cd "${BUILD_DIR}/pocketpy"
+# 对于 CMake，清理 build 目录即可
 rm -rf build
 mkdir build
 cd build
@@ -217,12 +222,12 @@ echo "======== PocketPy 编译完成. ========"
     echo ""
     echo "======== 5.7 正在编译 fbterm-1.7 ========"
     cd "${BUILD_DIR}/fbterm-1.7"
+    git clean -fdx
 
     export CXXFLAGS="${CXXFLAGS} -Wno-narrowing -fpermissive"
     export LIBS="-liconv -lexpat -lz"
     echo "为 fbterm 应用特殊编译参数: CXXFLAGS='${CXXFLAGS}' LIBS='${LIBS}'"
 
-    make clean &> /dev/null || true
     ./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}"
     make -j$(nproc)
 
