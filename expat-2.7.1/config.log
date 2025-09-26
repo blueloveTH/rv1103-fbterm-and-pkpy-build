@@ -27,7 +27,7 @@ uname -v = #236-Ubuntu SMP Fri Apr 11 19:53:21 UTC 2025
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
-PATH: /home/miku/rv_build/luckfox_toolchain/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/
+PATH: /home/miku/rv_build/luckfox_toolchain/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/
 PATH: /home/miku/luckfox-pico/sysdrv/source/kernel/drivers/block/zram/bin/
 PATH: /home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/
 PATH: /home/miku/luckfox-pico/sysdrv/source/kernel/drivers/block/zram/bin/
@@ -95,7 +95,7 @@ configure:4498: $? = 0
 configure:4487: arm-rockchip830-linux-uclibcgnueabihf-gcc -v >&5
 Using built-in specs.
 COLLECT_GCC=arm-rockchip830-linux-uclibcgnueabihf-gcc
-COLLECT_LTO_WRAPPER=/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/lto-wrapper
+COLLECT_LTO_WRAPPER=/home/miku/rv_build/luckfox_toolchain/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/lto-wrapper
 Target: arm-rockchip830-linux-uclibcgnueabihf
 Configured with: /opt/.build/arm-rockchip830-linux-uclibcgnueabihf/src/gcc/configure --build=x86_64-build_pc-linux-gnu --host=x86_64-build_pc-linux-gnu --target=arm-rockchip830-linux-uclibcgnueabihf --prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf --with-sysroot=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-languages=c,c++ --with-arch=armv7-a --with-fpu=neon-vfpv4 --with-float=hard --with-pkgversion='crosstool-NG 1.24.0' --enable-__cxa_atexit --disable-libmudflap --disable-libgomp --disable-libssp --disable-libquadmath --disable-libquadmath-support --disable-libsanitizer --disable-libmpx --with-gmp=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpfr=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpc=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-isl=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --enable-lto --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --enable-threads=posix --enable-target-optspace --enable-plugin --enable-gold --disable-nls --disable-multilib --with-local-prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-long-long
 Thread model: posix
@@ -452,7 +452,7 @@ configure:11191: $? = 0
 configure:11180: arm-rockchip830-linux-uclibcgnueabihf-g++ -v >&5
 Using built-in specs.
 COLLECT_GCC=arm-rockchip830-linux-uclibcgnueabihf-g++
-COLLECT_LTO_WRAPPER=/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/lto-wrapper
+COLLECT_LTO_WRAPPER=/home/miku/rv_build/luckfox_toolchain/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/lto-wrapper
 Target: arm-rockchip830-linux-uclibcgnueabihf
 Configured with: /opt/.build/arm-rockchip830-linux-uclibcgnueabihf/src/gcc/configure --build=x86_64-build_pc-linux-gnu --host=x86_64-build_pc-linux-gnu --target=arm-rockchip830-linux-uclibcgnueabihf --prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf --with-sysroot=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-languages=c,c++ --with-arch=armv7-a --with-fpu=neon-vfpv4 --with-float=hard --with-pkgversion='crosstool-NG 1.24.0' --enable-__cxa_atexit --disable-libmudflap --disable-libgomp --disable-libssp --disable-libquadmath --disable-libquadmath-support --disable-libsanitizer --disable-libmpx --with-gmp=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpfr=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpc=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-isl=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --enable-lto --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --enable-threads=posix --enable-target-optspace --enable-plugin --enable-gold --disable-nls --disable-multilib --with-local-prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-long-long
 Thread model: posix
@@ -725,7 +725,7 @@ conftest.c:34:7: warning: implicit declaration of function 'arc4random_buf'; did
        arc4random_buf(dummy, 0U);
        ^~~~~~~~~~~~~~
        srandom_r
-/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/ld.bfd: /tmp/ccJhJhcf.o: in function `main':
+/home/miku/rv_build/luckfox_toolchain/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/ld.bfd: /tmp/ccOO9zSP.o: in function `main':
 /home/miku/rv_build/expat-2.7.1/conftest.c:34: undefined reference to `arc4random_buf'
 collect2: error: ld returned 1 exit status
 configure:15190: $? = 1
@@ -775,7 +775,7 @@ conftest.c:33:11: warning: implicit declaration of function 'arc4random'; did yo
            arc4random();
            ^~~~~~~~~~
            srandom
-/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/ld.bfd: /tmp/ccw71SYg.o: in function `main':
+/home/miku/rv_build/luckfox_toolchain/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/ld.bfd: /tmp/ccuDJEkL.o: in function `main':
 /home/miku/rv_build/expat-2.7.1/conftest.c:33: undefined reference to `arc4random'
 collect2: error: ld returned 1 exit status
 configure:15217: $? = 1
@@ -1181,7 +1181,7 @@ ac_cv_env_DOCBOOK_TO_MAN_set=
 ac_cv_env_DOCBOOK_TO_MAN_value=
 ac_cv_env_LDFLAGS_set=set
 ac_cv_env_LDFLAGS_value=-L/home/miku/rv_build/staging/lib
-ac_cv_env_LIBS_set=set
+ac_cv_env_LIBS_set=
 ac_cv_env_LIBS_value=
 ac_cv_env_LT_SYS_LIBRARY_PATH_set=
 ac_cv_env_LT_SYS_LIBRARY_PATH_value=

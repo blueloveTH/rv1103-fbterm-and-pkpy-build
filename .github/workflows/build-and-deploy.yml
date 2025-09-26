@@ -1,0 +1,43 @@
+# 工作流名称
+name: Build and Package Project for Luckfox Pico
+
+# 触发条件：当向 master 分支推送代码时，或手动触发时
+on:
+  push:
+    branches: [ master ] # 已从 main 修改为 master
+  workflow_dispatch:
+
+jobs:
+  build:
+    # 运行环境：使用最新的 Ubuntu 系统
+    runs-on: ubuntu-latest
+
+    steps:
+      # 第 1 步：检出你的仓库代码
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      # 第 2 步：运行一键编译脚本
+      - name: Run the One-Click Build Script
+        # 已修改为您的脚本名称
+        run: |
+          chmod +x auto_build_rv1103.sh
+          ./auto_build_rv1103.sh
+
+      # 第 3 步：运行打包脚本
+      - name: Run the Packaging Script
+        # 已修改为您的脚本名称
+        run: |
+          chmod +x gen_installer.sh
+          ./gen_installer.sh
+
+      # 第 4 步：打包最终的部署文件
+      - name: Package Artifacts for Deployment
+        uses: actions/upload-artifact@v4
+        with:
+          # 打包后的文件名
+          name: luckfox-pico-deployment-package
+          # 需要打包的目录
+          path: install/

@@ -27,7 +27,7 @@ uname -v = #236-Ubuntu SMP Fri Apr 11 19:53:21 UTC 2025
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
-PATH: /home/miku/rv_build/luckfox_toolchain/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin
+PATH: /home/miku/rv_build/luckfox_toolchain/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin
 PATH: /home/miku/luckfox-pico/sysdrv/source/kernel/drivers/block/zram/bin
 PATH: /home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin
 PATH: /home/miku/luckfox-pico/sysdrv/source/kernel/drivers/block/zram/bin
@@ -64,7 +64,7 @@ configure:2938: $? = 0
 configure:2927: arm-rockchip830-linux-uclibcgnueabihf-gcc -v >&5
 Using built-in specs.
 COLLECT_GCC=arm-rockchip830-linux-uclibcgnueabihf-gcc
-COLLECT_LTO_WRAPPER=/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/lto-wrapper
+COLLECT_LTO_WRAPPER=/home/miku/rv_build/luckfox_toolchain/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/lto-wrapper
 Target: arm-rockchip830-linux-uclibcgnueabihf
 Configured with: /opt/.build/arm-rockchip830-linux-uclibcgnueabihf/src/gcc/configure --build=x86_64-build_pc-linux-gnu --host=x86_64-build_pc-linux-gnu --target=arm-rockchip830-linux-uclibcgnueabihf --prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf --with-sysroot=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-languages=c,c++ --with-arch=armv7-a --with-fpu=neon-vfpv4 --with-float=hard --with-pkgversion='crosstool-NG 1.24.0' --enable-__cxa_atexit --disable-libmudflap --disable-libgomp --disable-libssp --disable-libquadmath --disable-libquadmath-support --disable-libsanitizer --disable-libmpx --with-gmp=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpfr=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpc=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-isl=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --enable-lto --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --enable-threads=posix --enable-target-optspace --enable-plugin --enable-gold --disable-nls --disable-multilib --with-local-prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-long-long
 Thread model: posix
@@ -1070,7 +1070,7 @@ configure:10477: result: no
 No package 'bzip2' found
 configure:10521: checking for BZ2_bzDecompress in -lbz2
 configure:10546: arm-rockchip830-linux-uclibcgnueabihf-gcc -o conftest -g -O2 -fvisibility=hidden -I/home/miku/rv_build/staging/include -L/home/miku/rv_build/staging/lib conftest.c -lbz2   >&5
-/home/miku/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/ld.bfd: cannot find -lbz2
+/home/miku/rv_build/luckfox_toolchain/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/ld.bfd: cannot find -lbz2
 collect2: error: ld returned 1 exit status
 configure:10546: $? = 1
 configure: failed program was:
@@ -1246,7 +1246,7 @@ ac_cv_env_LIBPNG_CFLAGS_set=
 ac_cv_env_LIBPNG_CFLAGS_value=
 ac_cv_env_LIBPNG_LIBS_set=
 ac_cv_env_LIBPNG_LIBS_value=
-ac_cv_env_LIBS_set=set
+ac_cv_env_LIBS_set=
 ac_cv_env_LIBS_value=
 ac_cv_env_LT_SYS_LIBRARY_PATH_set=
 ac_cv_env_LT_SYS_LIBRARY_PATH_value=

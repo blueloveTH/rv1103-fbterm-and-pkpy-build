@@ -34,7 +34,7 @@ configure:2326: checking for arm-rockchip830-linux-uclibcgnueabihf-ranlib
 configure:2393: checking for arm-rockchip830-linux-uclibcgnueabihf-strip
 configure:2630: checking for objdir
 configure:2661: checking for arm-rockchip830-linux-uclibcgnueabihf-gcc option to produce PIC
-configure:2813: checking if arm-rockchip830-linux-uclibcgnueabihf-gcc PIC flag                 -fPIC works
+configure:2813: checking if arm-rockchip830-linux-uclibcgnueabihf-gcc PIC flag                                     -fPIC works
 configure:2883: checking if arm-rockchip830-linux-uclibcgnueabihf-gcc static flag -static works
 configure:2929: checking if arm-rockchip830-linux-uclibcgnueabihf-gcc supports -c -o file.o
 configure:2977: checking if arm-rockchip830-linux-uclibcgnueabihf-gcc supports -c -o file.lo
