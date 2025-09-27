@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # =================================================================
-# Fbterm & PocketPy 全自动交叉编译脚本 (最终版 - 包含 Automake 兼容性修复)
+# Fbterm & PocketPy 全自动交叉编译脚本 (v33 - 最终版)
 # =================================================================
 
 set -eu
 
+# ... (第一到第四部分保持不变) ...
 # =================================================================
 # 第一部分：安装编译主机所需的所有依赖包
 # =================================================================
@@ -16,32 +17,8 @@ sudo apt-get install -y \
     gawk texinfo libssl-dev bison flex fakeroot cmake unzip gperf autoconf \
     device-tree-compiler libncurses5-dev pkg-config bc python-is-python3 \
     openssl openssh-server openssh-client vim file cpio rsync \
-    build-essential automake libtool uuid-dev wget xz-utils
+    build-essential automake libtool uuid-dev wget xz-utils gettext
 echo "====== 主机基础依赖包安装完毕. ======"
-echo ""
-
-# --- 最终修复：为 aclocal 和 automake 创建符号链接以兼容 fontconfig ---
-echo "====== 1.2 正在创建 aclocal/automake 兼容性符号链接... ======"
-# 检查 aclocal 是否存在
-if command -v aclocal &> /dev/null
-then
-    ACLOCAL_PATH=$(which aclocal)
-    # 创建 aclocal-1.17 符号链接
-    sudo ln -sf "$ACLOCAL_PATH" /usr/bin/aclocal-1.17
-    echo "符号链接 'aclocal-1.17' -> '${ACLOCAL_PATH}' 已创建。"
-else
-    echo "警告: 未找到 'aclocal' 命令，跳过符号链接创建。"
-fi
-# 检查 automake 是否存在
-if command -v automake &> /dev/null
-then
-    AUTOMAKE_PATH=$(which automake)
-    # 创建 automake-1.17 符号链接
-    sudo ln -sf "$AUTOMAKE_PATH" /usr/bin/automake-1.17
-    echo "符号链接 'automake-1.17' -> '${AUTOMAKE_PATH}' 已创建。"
-else
-    echo "警告: 未找到 'automake' 命令，跳过符号链接创建。"
-fi
 echo ""
 
 
@@ -208,6 +185,7 @@ echo ""
 echo "======== 5.5 正在编译 fontconfig-2.16.0 ========"
 cd "${BUILD_DIR}/fontconfig-2.16.0"
 make clean &> /dev/null || true
+autoreconf -fiv
 ./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}" --enable-static --disable-shared --disable-docs \
             --sysconfdir=${INSTALL_DIR}/etc --localstatedir=${INSTALL_DIR}/var
 make -j$(nproc)
@@ -239,6 +217,11 @@ echo "======== PocketPy 编译完成. ========"
     echo "======== 5.7 正在编译 fbterm-1.7 ========"
     cd "${BUILD_DIR}/fbterm-1.7"
     make clean &> /dev/null || true
+
+    # --- 最终修正：同样为 fbterm 运行 autoreconf ---
+    echo "--> 正在为 fbterm 重新生成构建系统..."
+    autoreconf -fiv
+    echo "--> 构建系统生成完毕。"
 
     export CXXFLAGS="${CXXFLAGS} -Wno-narrowing -fpermissive"
     export LIBS="-liconv -lexpat -lz"
