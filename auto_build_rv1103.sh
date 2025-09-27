@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # =================================================================
-# Fbterm & PocketPy 全自动交叉编译脚本 (v28 - FreeType 最终修正版)
+# Fbterm & PocketPy 全自动交叉编译脚本 (v29 - Autoreconf 修正)
 # =================================================================
 
 set -eu
@@ -173,30 +173,24 @@ echo "======== libiconv 编译完成. ========"
 echo ""
 echo "======== 5.4 正在编译 freetype-2.14.1 ========"
 cd "${BUILD_DIR}/freetype-2.14.1"
-
-# --- 最终修正：使用 make clean，并移除所有不必要的清理和生成步骤 ---
 make clean &> /dev/null || true
-
-echo "--> 正在运行 configure 包装脚本..."
-# 这个 configure 脚本实际上会调用 make setup，所以它需要 Makefile 文件存在
-# 我们不再需要 --cache-file=/dev/null
 ./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}" --with-zlib=yes --enable-static --disable-shared
-echo "--> configure 包装脚本运行完成。"
-
-echo "--> 正在运行 make..."
 make -j$(nproc)
-echo "--> make 运行完成。"
-
 make install
 cd "${BUILD_DIR}"
 echo "======== freetype 编译完成. ========"
-
 
 # --- 编译 fontconfig ---
 echo ""
 echo "======== 5.5 正在编译 fontconfig-2.16.0 ========"
 cd "${BUILD_DIR}/fontconfig-2.16.0"
 make clean &> /dev/null || true
+
+# --- 修正：运行 autoreconf 来强制重新生成与当前环境兼容的构建脚本 ---
+echo "--> 正在为 fontconfig 重新生成构建系统..."
+autoreconf -fiv
+echo "--> 构建系统生成完毕。"
+
 ./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}" --enable-static --disable-shared --disable-docs \
             --sysconfdir=${INSTALL_DIR}/etc --localstatedir=${INSTALL_DIR}/var
 make -j$(nproc)
@@ -240,6 +234,7 @@ echo "======== PocketPy 编译完成. ========"
     cd "${BUILD_DIR}"
     echo "======== fbterm 编译完成. ========"
 )
+
 
 echo ""
 echo "================================================================="
