@@ -1,12 +1,11 @@
 #!/bin/bash
 
 # =================================================================
-# Fbterm & PocketPy 全自动交叉编译脚本 (v29 - Autoreconf 修正)
+# Fbterm & PocketPy 全自动交叉编译脚本 (v31 - 添加 gettext 依赖)
 # =================================================================
 
 set -eu
 
-# ... (第一到第四部分保持不变) ...
 # =================================================================
 # 第一部分：安装编译主机所需的所有依赖包
 # =================================================================
@@ -17,7 +16,8 @@ sudo apt-get install -y \
     gawk texinfo libssl-dev bison flex fakeroot cmake unzip gperf autoconf \
     device-tree-compiler libncurses5-dev pkg-config bc python-is-python3 \
     openssl openssh-server openssh-client vim file cpio rsync \
-    build-essential automake libtool uuid-dev wget xz-utils
+    build-essential automake libtool uuid-dev wget xz-utils \
+    gettext # <--- 新增的依赖包
 echo "====== 主机基础依赖包安装完毕. ======"
 echo ""
 
@@ -185,12 +185,10 @@ echo ""
 echo "======== 5.5 正在编译 fontconfig-2.16.0 ========"
 cd "${BUILD_DIR}/fontconfig-2.16.0"
 make clean &> /dev/null || true
-
-# --- 修正：运行 autoreconf 来强制重新生成与当前环境兼容的构建脚本 ---
+# 运行 autoreconf 来强制重新生成与当前环境兼容的构建脚本
 echo "--> 正在为 fontconfig 重新生成构建系统..."
 autoreconf -fiv
 echo "--> 构建系统生成完毕。"
-
 ./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}" --enable-static --disable-shared --disable-docs \
             --sysconfdir=${INSTALL_DIR}/etc --localstatedir=${INSTALL_DIR}/var
 make -j$(nproc)
@@ -234,7 +232,6 @@ echo "======== PocketPy 编译完成. ========"
     cd "${BUILD_DIR}"
     echo "======== fbterm 编译完成. ========"
 )
-
 
 echo ""
 echo "================================================================="
