@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # =================================================================
-# Fbterm & PocketPy 全自动交叉编译脚本 (v26 - 使用 FreeType 2.14.1)
+# Fbterm & PocketPy 全自动交叉编译脚本 (v28 - FreeType 最终修正版)
 # =================================================================
 
 set -eu
@@ -173,13 +173,24 @@ echo "======== libiconv 编译完成. ========"
 echo ""
 echo "======== 5.4 正在编译 freetype-2.14.1 ========"
 cd "${BUILD_DIR}/freetype-2.14.1"
+
+# --- 最终修正：使用 make clean，并移除所有不必要的清理和生成步骤 ---
 make clean &> /dev/null || true
-# 使用标准的 configure 参数，不再需要任何特殊调试或清理
+
+echo "--> 正在运行 configure 包装脚本..."
+# 这个 configure 脚本实际上会调用 make setup，所以它需要 Makefile 文件存在
+# 我们不再需要 --cache-file=/dev/null
 ./configure --prefix="${INSTALL_DIR}" --host="${TARGET_HOST}" --with-zlib=yes --enable-static --disable-shared
+echo "--> configure 包装脚本运行完成。"
+
+echo "--> 正在运行 make..."
 make -j$(nproc)
+echo "--> make 运行完成。"
+
 make install
 cd "${BUILD_DIR}"
 echo "======== freetype 编译完成. ========"
+
 
 # --- 编译 fontconfig ---
 echo ""
@@ -229,7 +240,6 @@ echo "======== PocketPy 编译完成. ========"
     cd "${BUILD_DIR}"
     echo "======== fbterm 编译完成. ========"
 )
-
 
 echo ""
 echo "================================================================="

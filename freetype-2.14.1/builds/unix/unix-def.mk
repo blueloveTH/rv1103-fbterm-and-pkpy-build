@@ -55,7 +55,7 @@ DISTCLEAN += $(OBJ_BUILD)/config.cache  \
 
 # Standard installation variables.
 #
-prefix       := /home/miku/rv_build/staging
+prefix       := 
 exec_prefix  := ${prefix}
 libdir       := ${exec_prefix}/lib
 bindir       := ${exec_prefix}/bin
@@ -73,7 +73,7 @@ PKGCONFIG_REQUIRES         :=  zlib
 PKGCONFIG_REQUIRES_PRIVATE := 
 PKGCONFIG_LIBS             := -L${libdir} -lfreetype 
 PKGCONFIG_LIBS_PRIVATE     := 
-LIBSSTATIC_CONFIG          := -lfreetype -L/home/miku/rv_build/staging/lib -lz
+LIBSSTATIC_CONFIG          := -lfreetype -lz
 build_libtool_libs         := 
 ft_version                 := 26.4.20
 
