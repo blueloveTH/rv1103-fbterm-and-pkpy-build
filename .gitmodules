@@ -1,0 +1,3 @@
+[submodule "fbterm-truecolor"]
+	path = fbterm-truecolor
+	url = https://github.com/18650official/fbterm-truecolor
